@@ -22,6 +22,7 @@ def input_to_index(user_input)
 end
 
 def move(board, index, current_player)
+  
   board[index] = current_player
 end
 
@@ -37,8 +38,9 @@ def turn(board)
   puts "Please enter 1-9:"
   input = gets.strip
   index = input_to_index(input)
+  current_player = current_player(board)
   if valid_move?(board, index)
-    move(board, index)
+    move(board, index, current_player)
     display_board(board)
   else
     turn(board)
@@ -118,9 +120,9 @@ def play(board)
     turn(board)
   end
   if won?(board)
-    puts "Congratulations #{winner(board)}"
+    puts "Congratulations #{winner(board)}!"
   elsif draw?(board)
-    puts "It's a draw"
+    puts "Cat's Game!"
   else
     puts "something wrong"
   end
